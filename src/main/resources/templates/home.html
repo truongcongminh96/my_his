@@ -1,0 +1,13 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title th:text="${title}">HIS</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<h1 th:text="${title}">HIS</h1>
+<p>Welcome to Spring MVC + Thymeleaf.</p>
+<p>Server time: <strong th:text="${#temporals.format(now, 'yyyy-MM-dd HH:mm:ss')}">--</strong></p>
+</body>
+</html>
