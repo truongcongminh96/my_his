@@ -1,13 +1,20 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title th:text="${title}">HIS</title>
-    <link rel="stylesheet" href="/css/site.css">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-<h1 th:text="${title}">HIS</h1>
-<p>Welcome to Spring MVC + Thymeleaf.</p>
-<p>Server time: <strong th:text="${#temporals.format(now, 'yyyy-MM-dd HH:mm:ss')}">--</strong></p>
+<h1>Chào mừng, <span th:text="${fullName}">User</span>!</h1>
+<p><strong>Username:</strong> <span th:text="${username}"></span></p>
+<p><strong>Email:</strong> <span th:text="${email}"></span></p>
+<p><strong>Roles:</strong>
+    <span th:each="role : ${roles}" th:text="${role.authority} + ' '"></span>
+</p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Đăng xuất</button>
+</form>
+
 </body>
 </html>

@@ -57,6 +57,14 @@ public class SysUser {
         return this.username;
     }
 
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
     public String getPasswordHash() {
         return this.passwordHash;
     }
