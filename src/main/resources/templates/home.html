@@ -1,19 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HIS • Trang chủ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>Xin chào, <span th:text="${username}"></span> 👋</h1>
+<header class="app-header">
+    <div class="header-left">
+        <div class="brand-mini">HIS</div>
+        <div class="title-wrap">
+            <h1 class="app-title">Hospital Information System</h1>
+            <div class="app-sub">Bệnh viện ID: <span th:text="${hospitalId}">1</span></div>
+        </div>
+    </div>
 
-    <p>Chào mừng bạn đến hệ thống quản lý bệnh viện!</p>
+    <div class="header-right">
+        <div class="whoami">
+            <div class="meta">
+                <div class="name" th:text="${#strings.defaultString(fullName, username)}">Admin</div>
+                <div class="roles">
+                    <span class="role-badge" th:each="r : ${roles}" th:text="${r}">ADMIN</span>
+                </div>
+            </div>
+            <div class="avatar" th:text="${#strings.substring(#strings.defaultString(fullName, username),0,1)}">A</div>
+        </div>
 
-    <form th:action="@{/logout}" method="post">
-        <button class="btn-primary" type="submit">Đăng xuất</button>
-    </form>
-</div>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <button class="btn-outline" type="submit">Đăng xuất</button>
+        </form>
+    </div>
+</header>
+
+<main class="app-main">
+    <section class="welcome card">
+        <h2>Xin chào, <span th:text="${#strings.defaultString(fullName, username)}">Admin</span> 👋</h2>
+        <p class="muted" th:if="${email}">Email: <span th:text="${email}">admin@his.local</span></p>
+        <p class="muted">Chọn một chức năng để bắt đầu.</p>
+    </section>
+
+    <section class="grid">
+        <a class="tile" href="#" title="Hồ sơ bệnh án">
+            <div class="tile-icon">📄</div>
+            <div class="tile-title">Hồ sơ bệnh án</div>
+            <div class="tile-sub">Tạo và quản lý bệnh án</div>
+        </a>
+
+        <a class="tile" href="#" title="Khám ngoại trú">
+            <div class="tile-icon">🩺</div>
+            <div class="tile-title">Khám ngoại trú</div>
+            <div class="tile-sub">Tiếp đón & chỉ định</div>
+        </a>
+
+        <a class="tile" href="#" title="Nội trú">
+            <div class="tile-icon">🏥</div>
+            <div class="tile-title">Nội trú</div>
+            <div class="tile-sub">Điều trị nội trú</div>
+        </a>
+
+        <a class="tile" href="#" title="Dược - Vật tư">
+            <div class="tile-icon">💊</div>
+            <div class="tile-title">Dược – Vật tư</div>
+            <div class="tile-sub">Kho thuốc, cấp phát</div>
+        </a>
+
+        <a class="tile" href="#" title="Viện phí">
+            <div class="tile-icon">💳</div>
+            <div class="tile-title">Viện phí</div>
+            <div class="tile-sub">Thu chi & BHYT</div>
+        </a>
+
+        <a class="tile" href="#" title="Báo cáo">
+            <div class="tile-icon">📊</div>
+            <div class="tile-title">Báo cáo – Thống kê</div>
+            <div class="tile-sub">Tổng hợp số liệu</div>
+        </a>
+    </section>
+</main>
 </body>
 </html>

@@ -65,6 +65,10 @@ public class SysUser {
         return this.email;
     }
 
+    public Long getHospitalId() {
+        return this.hospitalId;
+    }
+
     public String getPasswordHash() {
         return this.passwordHash;
     }
