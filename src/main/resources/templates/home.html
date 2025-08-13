@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Chào mừng, <span th:text="${fullName}">User</span>!</h1>
-<p><strong>Username:</strong> <span th:text="${username}"></span></p>
-<p><strong>Email:</strong> <span th:text="${email}"></span></p>
-<p><strong>Roles:</strong>
-    <span th:each="role : ${roles}" th:text="${role.authority} + ' '"></span>
-</p>
+<div class="container">
+    <h1>Xin chào, <span th:text="${username}"></span> 👋</h1>
 
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Đăng xuất</button>
-</form>
+    <p>Chào mừng bạn đến hệ thống quản lý bệnh viện!</p>
 
+    <form th:action="@{/logout}" method="post">
+        <button class="btn-primary" type="submit">Đăng xuất</button>
+    </form>
+</div>
 </body>
 </html>

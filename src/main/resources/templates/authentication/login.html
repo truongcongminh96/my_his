@@ -1,37 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Đăng nhập</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Đăng nhập hệ thống</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-<div class="login-container">
-    <h2>Đăng nhập hệ thống</h2>
-
-    <!-- Hiển thị lỗi đăng nhập -->
-    <div th:if="${param.error}" style="color:red;">
-        Sai tên đăng nhập hoặc mật khẩu.
-    </div>
-
-    <!-- Hiển thị thông báo logout -->
-    <div th:if="${param.logout}" style="color:green;">
-        Đã đăng xuất thành công.
-    </div>
-
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label for="username">Tên đăng nhập:</label>
-            <input type="text" id="username" name="username" required/>
+<body class="bg">
+<main class="center-wrapper">
+    <section class="card">
+        <div class="brand">
+            <div class="logo">HIS</div>
+            <h1>Đăng nhập hệ thống</h1>
+            <p class="subtitle">Vui lòng dùng tài khoản được cấp để tiếp tục</p>
         </div>
-        <div>
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" name="password" required/>
+
+        <!-- Alert -->
+        <div class="alert alert-error" th:if="${param.error}">
+            Sai tên đăng nhập hoặc mật khẩu.
         </div>
-        <div>
-            <button type="submit">Đăng nhập</button>
+        <div class="alert alert-success" th:if="${param.logout}">
+            Đã đăng xuất thành công.
         </div>
-    </form>
-</div>
+
+        <form th:action="@{/login}" method="post" class="form">
+            <div class="field">
+                <label for="username">Tên đăng nhập</label>
+                <input id="username" name="username" type="text" autocomplete="username" required />
+            </div>
+
+            <div class="field">
+                <label for="password">Mật khẩu</label>
+                <div class="password-wrap">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required />
+                    <button type="button" class="toggle" aria-label="Hiện/ẩn mật khẩu" onclick="togglePw()">
+                        👁
+                    </button>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-primary" type="submit">Đăng nhập</button>
+            </div>
+        </form>
+
+        <footer class="footer">
+            <span>©VNPT-MinhTruongDTP Hospital Information System</span>
+        </footer>
+    </section>
+</main>
+
+<script>
+    function togglePw(){
+        const i = document.getElementById('password');
+        i.type = i.type === 'password' ? 'text' : 'password';
+    }
+</script>
 </body>
 </html>
