@@ -1,6 +1,5 @@
-package com.his.hospital_api.config;
+package com.his.hospital_api.security;
 
-import com.his.hospital_api.security.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,15 +37,15 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/authentication/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/home", true)
-                        .failureUrl("/login?error=true")
+                        .failureUrl("/authentication/login?error=true")
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true")
+                        .logoutSuccessUrl("/authentication/login?logout=true")
                         .permitAll()
                 );
 
