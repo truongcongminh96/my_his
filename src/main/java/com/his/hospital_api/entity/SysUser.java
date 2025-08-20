@@ -33,6 +33,10 @@ public class SysUser {
     @Column(name = "HOSPITAL_ID", nullable = false)
     private Long hospitalId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HOSPITAL_ID", insertable = false, updatable = false)
+    private Hospital hospital;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "SYS_USER_ROLE",
@@ -57,19 +61,55 @@ public class SysUser {
         return this.username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getFullName() {
         return this.fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
         return this.email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
+    }
+
     public Long getHospitalId() {
         return this.hospitalId;
     }
 
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
     public String getPasswordHash() {
         return this.passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }

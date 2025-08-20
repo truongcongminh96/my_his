@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tài khoản người dùng</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <style>
+        .page {max-width:1100px;margin:24px auto;padding:0 16px;}
+        .toolbar {display:flex;justify-content:space-between;align-items:center;margin:12px 0 16px;}
+        .btn {padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
+        .btn-primary{background:#2563eb;color:#fff}
+        .table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.05);border-radius:12px;overflow:hidden}
+        .table th,.table td{padding:10px 12px;border-bottom:1px solid rgba(148,163,184,.2);text-align:left}
+        .badge{display:inline-block;background:#0ea5e9;color:#fff;border-radius:999px;padding:2px 8px;margin-right:6px;font-size:.8rem}
+        .muted{opacity:.7}
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="toolbar">
+        <h2>Danh sách tài khoản</h2>
+        <a th:href="@{/admin/users/new}" class="btn btn-primary">+ Tạo tài khoản</a>
+    </div>
+
+    <div th:if="${param.success}" class="alert alert-success">Tạo tài khoản thành công.</div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Bệnh viện</th>
+            <th>Quyền</th>
+            <th>Trạng thái</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u, i : ${users}">
+            <td th:text="${i.index + 1}">1</td>
+            <td th:text="${u.username}">admin</td>
+            <td th:text="${u.fullName}">Administrator</td>
+            <td th:text="${u.email}">admin@his.local</td>
+            <td th:text="${u.hospitalId}">1</td>
+            <td>
+                <span th:each="r : ${u.roles}" th:text="${r.code}" class="badge">ADMIN</span>
+            </td>
+            <td>
+        <span th:text="${u.isActive == 1 ? 'Đang hoạt động' : 'Khóa'}"
+              th:classappend="${u.isActive == 1} ? '' : ' muted'">Đang hoạt động</span>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(users)}">
+            <td colspan="7" class="muted">Chưa có tài khoản nào.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

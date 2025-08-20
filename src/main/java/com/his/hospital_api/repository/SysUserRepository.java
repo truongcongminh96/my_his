@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface SysUserRepository extends JpaRepository<SysUser, Long> {
     @Query("SELECT u FROM SysUser u LEFT JOIN FETCH u.roles WHERE u.username = :username")
     Optional<SysUser> findByUsername(String username);
+
+    boolean existsByUsername(String username);
 }
